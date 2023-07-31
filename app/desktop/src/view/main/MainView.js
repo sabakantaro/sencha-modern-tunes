@@ -1,6 +1,7 @@
 Ext.define('ModernTunes.view.main.MainView', {
   extend: 'Ext.tab.Panel',
   xtype: 'mainview',
+  id: 'mainview',
   requires: [
     'ModernTunes.view.main.MainViewController',
     'ModernTunes.view.main.MainViewModel',

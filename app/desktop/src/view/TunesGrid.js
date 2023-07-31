@@ -1,6 +1,7 @@
 Ext.define('ModernTunes.view.TunesGrid', {
   extend: 'Ext.grid.Grid',
   xtype: 'tunesgrid',
+  id: 'tunesgrid',
   cls: 'tunes-grid',
   requires: ['Ext.grid.column.Column', 'Ext.grid.cell.*'],
   defaults: {

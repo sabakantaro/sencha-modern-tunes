@@ -1,6 +1,7 @@
 Ext.define('ModernTunes.view.TunesView', {
   extend: 'Ext.dataview.DataView',
   xtype: 'tunesview',
+  id: 'tunesview',
   scrollable: true,
   cls: 'tunes-view',
   layout: {
