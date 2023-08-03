@@ -8,6 +8,33 @@ Ext.define('ModernTunes.view.TunesGrid', {
     height: 54,
   },
 
+  items: [
+    {
+      xtype: 'toolbar',
+      docked: 'top',
+      defaults: {
+        margin: '0 10 0 0',
+      },
+      items: [
+        {
+          xtype: 'button',
+          iconCls: 'x-fa fa-plus',
+          handler: 'onAdd',
+        },
+        {
+          xtype: 'button',
+          iconCls: 'x-fa fa-edit',
+          handler: 'onEdit',
+        },
+        {
+          xtype: 'button',
+          iconCls: 'x-fa fa-trash',
+          handler: 'onDelete',
+        },
+      ],
+    },
+  ],
+
   columns: [
     {
       text: 'Artist',

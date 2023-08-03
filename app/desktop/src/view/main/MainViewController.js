@@ -38,7 +38,6 @@ Ext.define('ModernTunes.view.main.MainViewController', {
       layout: 'fit',
       items: [containerConfig],
     });
-    console.log(linkConfig);
     vid.show();
   },
 
@@ -48,5 +47,143 @@ Ext.define('ModernTunes.view.main.MainViewController', {
 
   onGridSelect: function (grid, records) {
     this.onShowPreview(records[0]);
+  },
+  onAdd: function () {
+    Ext.create('Ext.Dialog', {
+      title: 'Add a Tune',
+      closable: true,
+      width: 500,
+      height: 400,
+      layout: 'fit',
+      items: [
+        {
+          xtype: 'formpanel',
+          reference: 'form',
+          layout: 'form',
+          items: [
+            {
+              xtype: 'textfield',
+              fieldLabel: 'ID',
+              name: 'id',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Title',
+              name: 'title',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Image',
+              name: 'image',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Artist',
+              name: 'artist',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'iTunes Store',
+              name: 'itunesstore',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Preview',
+              name: 'preview',
+            },
+            {
+              xtype: 'datefield',
+              fieldLabel: 'Release Date',
+              name: 'release_date',
+            },
+          ],
+          buttons: [
+            {
+              text: 'Save',
+              handler: function () {
+                this.up('dialog').destroy();
+              },
+            },
+            {
+              text: 'Cancel',
+              handler: function () {
+                this.up('dialog').destroy();
+              },
+            },
+          ],
+        },
+      ],
+    }).show();
+  },
+
+  onEdit: function () {
+    Ext.create('Ext.Dialog', {
+      title: 'Edit a Tune',
+      closable: true,
+      width: 500,
+      height: 400,
+      layout: 'fit',
+      items: [
+        {
+          xtype: 'formpanel',
+          reference: 'form',
+          layout: 'form',
+          items: [
+            {
+              xtype: 'textfield',
+              fieldLabel: 'ID',
+              name: 'id',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Title',
+              name: 'title',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Image',
+              name: 'image',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Artist',
+              name: 'artist',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'iTunes Store',
+              name: 'itunesstore',
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Preview',
+              name: 'preview',
+            },
+            {
+              xtype: 'datefield',
+              fieldLabel: 'Release Date',
+              name: 'release_date',
+            },
+          ],
+          buttons: [
+            {
+              text: 'Save',
+              handler: function () {
+                this.up('dialog').destroy();
+              },
+            },
+            {
+              text: 'Cancel',
+              handler: function () {
+                this.up('dialog').destroy();
+              },
+            },
+          ],
+        },
+      ],
+    }).show();
+  },
+  onDelete: function () {
+    Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
   },
 });
