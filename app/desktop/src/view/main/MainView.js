@@ -28,9 +28,6 @@ Ext.define('ModernTunes.view.main.MainView', {
     {
       title: 'Grid',
       xtype: 'tunesgrid',
-      listeners: {
-        select: 'onGridSelect',
-      },
       bind: {
         store: '{tunes}',
       },

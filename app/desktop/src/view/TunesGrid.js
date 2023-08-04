@@ -17,6 +17,14 @@ Ext.define('ModernTunes.view.TunesGrid', {
       },
       items: [
         {
+          xtype: 'component',
+          html: '<h3>Grid</h3>',
+          cls: 'title',
+        },
+        {
+          xtype: 'spacer',
+        },
+        {
           xtype: 'button',
           iconCls: 'x-fa fa-plus',
           handler: 'onAdd',
