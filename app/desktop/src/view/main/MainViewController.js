@@ -239,4 +239,53 @@ Ext.define('ModernTunes.view.main.MainViewController', {
       tunesStore.getStore('tunes').sync();
     }
   },
+
+  // AJAX Call
+  onRefresh: function () {
+    Ext.Ajax.request({
+      url: 'http://localhost:8080/proxy/https://itunes.apple.com/us/rss/topmusicvideos/limit=50/json',
+      method: 'GET',
+      success: success,
+      failure: failure,
+    });
+
+    function success(response, opts) {
+      console.log('server-side success with status code ' + response.status);
+      var responseObject = Ext.decode(response.responseText);
+
+      if (responseObject.feed && responseObject.feed.entry) {
+        // restore the store
+        var tunesStore = Ext.ComponentQuery.query('mainview')[0].getViewModel();
+        tunesStore.getStore('tunes').removeAll();
+        responseObject.feed.entry.forEach(function (entry) {
+          var newTune = Ext.create('ModernTunes.model.Tune', {
+            id: entry.id.attributes['im:id'],
+            title: entry['im:name'].label,
+            image: entry['im:image'][2].label,
+            artist: entry['im:artist'].label,
+            itunesstore: entry.link[0].attributes.href,
+            preview: entry.link[1].attributes.href,
+            release_date: entry['im:releaseDate'].attributes.label,
+          });
+          // add the new record to the store
+          tunesStore.getStore('tunes').add(newTune);
+        });
+        // save the store
+        tunesStore.getStore('tunes').sync();
+      } else {
+        Ext.Msg.alert(
+          'Error',
+          responseObject.errorMessage || 'An error occurred.'
+        );
+      }
+    }
+
+    function failure(response, opts) {
+      console.log('server-side failure with status code ' + response.status);
+      Ext.Msg.alert(
+        'Error',
+        'An error occurred while communicating with the server.'
+      );
+    }
+  },
 });

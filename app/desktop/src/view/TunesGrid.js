@@ -39,6 +39,11 @@ Ext.define('ModernTunes.view.TunesGrid', {
           iconCls: 'x-fa fa-trash',
           handler: 'onDelete',
         },
+        {
+          xtype: 'button',
+          iconCls: 'x-fa fa-sync',
+          handler: 'onRefresh',
+        },
       ],
     },
   ],
